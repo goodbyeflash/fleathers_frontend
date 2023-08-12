@@ -1,118 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>관리자 페이지</title>
-  </head>
-  <body style="display: none">
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="initial-scale=1, viewport-fit=cover">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>관리자 페이지 | 회원관리</title>
+</head>
+
+<body>
     <div id="wrap">
-      <header>
-        <div class="header-top">
-          <h1>ADMINISTRATOR</h1>
-          <ul>
-            <li id="logout"><a href="javascript:void(0);">로그아웃</a></li>
-          </ul>
+        <header>
+            <div class="header-top">
+                <h1>ADMINISTRATOR</h1>
+                <ul>
+                    <li id="logout"><a>로그아웃</a></li>
+                </ul>
+            </div>
+
+            <nav class="gnb">
+                <ul>
+                    <li class="current">
+                        <a href="" class="dep01">똥 피하기 게임</a>
+                        <ul class="dep02">
+                            <li><a href="admin-poo.html" class="on">데이터리스트</a></li>
+                            <li><a href="admin-poo-setting.html">게임옵션</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+
+            <div class="contents">
+
+                <div class="contents-top">
+                    <h2>똥 피하기 게임</h2>
+
+                    <div class="admin-current">
+                        <p id="totalCount">
+                        </p>
+                    </div>
+
+                    <div class="search">
+                        <div class="form form-search">
+                            <select id="findSelect" name="" class="form-select">
+                                <option value="name">성명</option>
+                                <option value="id">회원아이디</option>
+                                <option value="type">권한</option>
+                                <option value="email">E-Mail</option>
+                                <option value="hp">휴대전화번호</option>
+                                <option value="publishedDate">가입일시</option>
+                                <option value="ip">IP</option>
+                            </select>
+                            <input id="findText" type="text" class="form-input" placeholder="검색어를 입력하세요." title="검색어 입력">
+                            <button id="findBtn" type="button" class="btn btn-primary">검색</button>
+                            <button id="findClear" type="button" class="btn btn-primary">초기화</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-wrap rt">
+                    <button type="button" class="btn btn-secondary">전체 점수 초기화</button>
+                </div>
+
+                <div class="contents-area">
+                    <div class="table">
+                        <table class="tb full">
+                            <colgroup>
+                                <col style="width: auto">
+                                <col style="width: auto">
+                                <col style="width: auto">
+                                <col style="width: auto">
+                                <col style="width: auto">
+                                <col style="width: auto">
+                                <col style="width: auto">
+                                <col style="width: 13%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>일련번호</th>
+                                    <th>닉네임</th>
+                                    <th>점수</th>
+                                    <th>플레이시간</th>
+                                    <th>플레이횟수</th>
+                                    <th>ip</th>
+                                    <th>등록날짜</th>
+                                    <th>관리(수정/삭제)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>뚱돼지년</td>
+                                    <td>0</td>
+                                    <td>100시간</td>
+                                    <td>100</td>
+                                    <td>123.123.123</td>
+                                    <td>2023.08.12</td>
+                                    <td>
+                                        <a href="" class="btn btn-secondary">수정</a>
+                                        <a href="" class="btn btn-primary">삭제</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="btn-wrap ct">
+                        <button type="button" id="prev" class="btn btn-arrow prev">이전</button>
+                        <span id="pageNav" class="page-nav"></span>
+                        <button type="button" id="next" class="btn btn-arrow next">다음</button>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="gnb">
-          <nav>
-            <ul>
-              <li class="dep01">
-                <a href="admin-poo.html" class="current">똥피하기</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <div class="container">
-        <div class="contents">
-          <div class="contents-top">
-            <h2>데이터 리스트</h2>
-
-            <div class="file">
-              <!-- <input type="file" id="fileUpload" class="form-file" /> -->
-              <!-- <span class="file-name">선택된 파일 없음</span> -->
-              <label id="delete" for="fileUpload" class="btn btn-file"
-                >데이터 전체 삭제</label
-              >
-              <button id="excel" type="button" class="btn btn-excel">
-                엑셀다운
-              </button>
-            </div>
-
-            <div class="search">
-              <div class="form form-search">
-                <select id="findSelect" name="" class="form-select">
-                  <option value="name">닉네임</option>
-                  <option value="hp">연락처</option>
-                  <option value="email">이메일</option>
-                  <option value="marketing">마케팅수신여부</option>
-                </select>
-                <input
-                  id="findText"
-                  type="text"
-                  class="form-input"
-                  placeholder="검색어를 입력하세요."
-                  title="검색어 입력"
-                  style="
-                    padding: 5px;
-                    margin: 0;
-                    border: 1px solid #c9c9c9;
-                    border-radius: 0;
-                    font-size: 1.3rem;
-                    line-height: 1;
-                    background-color: transparent;
-                    -webkit-box-sizing: border-box;
-                    box-sizing: border-box;
-                    vertical-align: middle;
-                    width: 300px;
-                    height: 33px;
-                  "
-                />
-                <button id="findBtn" type="button" class="btn btn-primary">
-                  검색
-                </button>
-                <button id="findClear" type="button" class="btn btn-primary">
-                  초기화
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="contents-area">
-            <div class="table">
-              <table class="tb full">
-                <thead>
-                  <tr>
-                    <th>닉네임</th>
-                    <th>점수</th>
-                    <th>연락처</th>
-                    <th>이메일</th>
-                    <th>마케팅 수신 동의</th>
-                    <th>IP</th>
-                    <th>등록날짜</th>
-                    <th>관리</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
-
-            <div class="btn-wrap ct">
-              <button type="button" id="prev" class="btn btn-arrow prev">
-                이전
-              </button>
-              <span id="pageNav" class="page-nav">1/1</span>
-              <button type="button" id="next" class="btn btn-arrow next">
-                다음
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="loading-popup">
-        <div class="dim"></div>
-        <div class="loading"></div>
-      </div>
     </div>
-  </body>
+</body>
+
 </html>

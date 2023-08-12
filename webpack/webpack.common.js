@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const htmlPageNames = ["admin", "admin-poo"];
+const htmlPageNames = ["admin", "admin-poo", "admin-poo-setting"];
 
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
@@ -18,6 +18,7 @@ module.exports = {
     main: Path.resolve(__dirname, "../src/scripts/index.js"),
     admin: Path.resolve(__dirname, "../src/scripts/admin.js"),
     "admin-poo": Path.resolve(__dirname, "../src/scripts/admin-poo.js"),
+    "admin-poo-setting": Path.resolve(__dirname, "../src/scripts/admin-poo-setting.js"),
   },
   output: {
     path: Path.join(__dirname, "../build"),
