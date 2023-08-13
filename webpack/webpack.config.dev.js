@@ -17,6 +17,7 @@ module.exports = merge(common, {
     },
     hot: true,
   },
+  plugins: [new Webpack.DefinePlugin({})],
   module: {
     rules: [
       {

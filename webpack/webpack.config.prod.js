@@ -13,12 +13,7 @@ module.exports = merge(common, {
     chunkFilename: "js/[name].[chunkhash:8].chunk.js",
   },
   plugins: [
-    new Webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("production"),
-      "process.env.API_KEY": JSON.stringify(
-        "SDAFDF832HJSC18LDFJGTDFVBLAPA89342J"
-      ),
-    }),
+    new Webpack.DefinePlugin({}),
     new MiniCssExtractPlugin({
       filename: "css/[name].[chunkhash:8].css",
       chunkFilename: "css/[name].[chunkhash:8].chunk.js",

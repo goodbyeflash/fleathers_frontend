@@ -16,13 +16,13 @@
     <title>관리자 페이지 | 똥피하기 게임</title>
   </head>
 
-  <body>
+  <body style="display: none">
     <div id="wrap">
       <header>
         <div class="header-top">
           <h1>ADMINISTRATOR</h1>
           <ul>
-            <li id="logout"><a>로그아웃</a></li>
+            <li id="logout" style="cursor: pointer"><a>로그아웃</a></li>
           </ul>
         </div>
 
@@ -49,14 +49,14 @@
 
             <div class="search">
               <div class="form form-search">
-                <select id="findSelect" name="" class="form-select">
-                  <option value="name">성명</option>
-                  <option value="id">회원아이디</option>
-                  <option value="type">권한</option>
-                  <option value="email">E-Mail</option>
-                  <option value="hp">휴대전화번호</option>
-                  <option value="publishedDate">가입일시</option>
-                  <option value="ip">IP</option>
+                <select
+                  id="findSelect"
+                  name=""
+                  class="form-select"
+                  style="width: 100px"
+                >
+                  <option value="serialNum">일련번호</option>
+                  <option value="name">닉네임</option>
                 </select>
                 <input
                   id="findText"
@@ -76,7 +76,7 @@
           </div>
 
           <div class="btn-wrap rt">
-            <button type="button" class="btn btn-secondary">
+            <button id="clearBtn" type="button" class="btn btn-secondary">
               전체 점수 초기화
             </button>
           </div>
@@ -99,27 +99,14 @@
                     <th>일련번호</th>
                     <th>닉네임</th>
                     <th>점수</th>
-                    <th>플레이시간</th>
-                    <th>플레이횟수</th>
+                    <th>플레이 시간(초)</th>
+                    <th>플레이 횟수</th>
                     <th>ip</th>
                     <th>등록날짜</th>
                     <th>관리</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>사용자1</td>
-                    <td>0</td>
-                    <td>100시간</td>
-                    <td>100</td>
-                    <td>123.123.123</td>
-                    <td>2023.08.12</td>
-                    <td>
-                      <a href="" class="btn btn-secondary">점수 초기화</a>
-                    </td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
 

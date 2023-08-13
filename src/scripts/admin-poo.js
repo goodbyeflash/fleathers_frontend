@@ -8,109 +8,84 @@ let lastPageNum = 0;
 let type = "all";
 let data = {};
 let userItems;
-let columns = [
-  { header: "닉네임", key: "name", width: 25 },
-  { header: "점수", key: "score", width: 25 },
-  { header: "연락처", key: "hp", width: 25 },
-  { header: "이메일", key: "email", width: 25 },
-  { header: "마케팅 수신 동의", key: "marketing", width: 25 },
-  { header: "IP", key: "ip", width: 25 },
-  {
-    header: "등록날짜",
-    key: "publishedDate",
-    width: 30,
-  },
-];
 
 window.onload = () => {
-  // api("get", "admins/check", undefined, (res) => {
-  //   if (res) {
-  //     if (res.msg && res.msg == "ERROR") {
-  //       location.href = "admin.html";
-  //       return;
-  //     }
-  //     document.getElementById("prev").onclick = () => {
-  //       if (pageCount == 1) {
-  //         return;
-  //       } else {
-  //         pageCount--;
-  //         onloadUserTable();
-  //       }
-  //     };
-  //     document.getElementById("next").onclick = () => {
-  //       if (pageCount == lastPageNum) {
-  //         return;
-  //       } else {
-  //         pageCount++;
-  //         onloadUserTable();
-  //       }
-  //     };
-  //     document.getElementById("findBtn").onclick = () => {
-  //       data = {};
-  //       data[document.getElementById("findSelect").value] =
-  //         document.getElementById("findText").value;
-  //       pageCount = 1;
-  //       type = "find";
-  //       window.sessionStorage.setItem("dodge_filter", JSON.stringify(data));
-  //       onloadUserTable();
-  //     };
-  //     onloadUserTable();
-  //     document.getElementById("findClear").onclick = () => {
-  //       window.sessionStorage.clear("dodge_filter");
-  //       document.getElementById("findText").value = "";
-  //       pageCount = 1;
-  //       data = {};
-  //       type == "all";
-  //       onloadUserTable();
-  //     };
-  //     document.getElementById("delete").onclick = () => {
-  //       if (!confirm("정말 삭제하시겠습니까?")) {
-  //         return;
-  //       }
-  //       api("delete", "users/list", {}, (res) => {
-  //         if (res.msg && res.msg == "OK") {
-  //           onloadUserTable();
-  //         }
-  //       });
-  //     };
-  //     document.getElementById("logout").onclick = () => {
-  //       api("post", "admins/logout", {}, (res) => {
-  //         if (res.msg && res.msg == "OK") {
-  //           alert("로그아웃 되었습니다.");
-  //           location.href = "admin.html";
-  //         }
-  //       });
-  //     };
-  //     document.getElementById("excel").onclick = () => {
-  //       api(
-  //         "post",
-  //         "users/download",
-  //         {
-  //           columns: columns,
-  //         },
-  //         (res) => {
-  //           const blob = new Blob([res.result.data], {
-  //             type: res.result.headers["content-type"],
-  //           });
-  //           var a = document.createElement("a");
-  //           a.href = window.URL.createObjectURL(blob);
-  //           a.download = "데이터 리스트.xlsx";
-  //           a.click();
-  //         }
-  //       );
-  //     };
-  //     document.getElementsByTagName("body")[0].style.display = "block";
-  //   }
-  // });
+  api("get", "admin/check", undefined, (res) => {
+    if (res) {
+      if (res.msg && res.msg == "ERROR") {
+        location.href = "admin.html";
+        return;
+      }
+      document.getElementById("prev").onclick = () => {
+        if (pageCount == 1) {
+          return;
+        } else {
+          pageCount--;
+          onloadPooTable();
+        }
+      };
+      document.getElementById("next").onclick = () => {
+        if (pageCount == lastPageNum) {
+          return;
+        } else {
+          pageCount++;
+          onloadPooTable();
+        }
+      };
+      document.getElementById("findBtn").onclick = () => {
+        if (!document.getElementById("findText").value) {
+          return;
+        }
+        data = {};
+        data[document.getElementById("findSelect").value] =
+          document.getElementById("findText").value;
+        pageCount = 1;
+        type = "find";
+        window.sessionStorage.setItem("poo_filter", JSON.stringify(data));
+        onloadPooTable();
+      };
+      onloadPooTable();
+      document.getElementById("findClear").onclick = () => {
+        window.sessionStorage.clear("poo_filter");
+        document.getElementById("findText").value = "";
+        pageCount = 1;
+        data = {};
+        type == "all";
+        onloadPooTable();
+      };
+      document.getElementById("clearBtn").onclick = () => {
+        if (!confirm("초기화 하시겠습니까?")) {
+          return;
+        }
+        api("delete", "poo/clear", {}, (res) => {
+          if (res.msg && res.msg == "OK") {
+            onloadPooTable();
+          }
+        });
+      };
+      document.getElementById("logout").onclick = () => {
+        if (!confirm("로그아웃 하시겠습니까?")) {
+          return;
+        }
+        api("post", "admin/logout", {}, (res) => {
+          if (res.msg && res.msg == "OK") {
+            location.href = "admin.html";
+          }
+        });
+      };
+      document.getElementsByTagName("body")[0].style.display = "block";
+    }
+  });
 };
 
-function onloadUserTable() {
+function onloadPooTable() {
   const table = document
     .getElementsByClassName("table")[0]
     .getElementsByTagName("tbody")[0];
-  const filter = window.sessionStorage.getItem("dodge_filter");
+  const findClearBtn = document.getElementById("findClear");
+  const filter = window.sessionStorage.getItem("poo_filter");
   let method = type == "find" || filter ? "post" : "get";
-  let url = type == "find" || filter ? "users/find" : "users/adminList";
+  let url = type == "find" || filter ? "poo/find" : "poo/";
 
   // 검색 된 필터 있을 경우
   if (filter) {
@@ -128,6 +103,10 @@ function onloadUserTable() {
     document.getElementById("findText").value = value;
   }
 
+  findClearBtn.style.opacity = filter ? 1 : 0.3;
+  findClearBtn.disabled = filter ? false : true;
+  findClearBtn.style.pointerEvents = filter ? "auto" : "none";
+
   api(method, `${url}?page=${pageCount}`, data, (res) => {
     if (res) {
       if (res.msg && res.msg == "OK") {
@@ -136,16 +115,19 @@ function onloadUserTable() {
         table.innerHTML = "";
         userItems.forEach((item, index) => {
           table.innerHTML += `<tr>
+            <td>${item.serialNum}</td>
             <td>${item.name}</td>
             <td>${item.score}</td>
-            <td>${item.hp}</td>
-            <td>${item.email}</td>
-            <td>${item.marketing}</td>
+            <td>${item.playTime}</td>
+            <td>${item.playCount}</td>
             <td>${item.ip}</td>
             <td>${new Date(
               item.publishedDate
             ).YYYYMMDDHHMMSS()}</td>            
             <td>
+            <a id="clear_${index}" data-val="${
+            item._id
+          }" class="btn btn-secondary">점수 초기화</a>
             <label id="delete_${index}" data-val="${
             item._id
           }" class="btn btn-file">삭제</label></td>
@@ -153,18 +135,38 @@ function onloadUserTable() {
         });
 
         for (let index = 0; index < userItems.length; index++) {
+          document.getElementById(`clear_${index}`).onclick = (e) => {
+            if (window.confirm("초기화 하시겠습니까?")) {
+              api(
+                "patch",
+                `poo/${e.target.getAttribute("data-val")}`,
+                {
+                  score: 0,
+                },
+                (res) => {
+                  if (res.msg && res.msg == "ERROR") {
+                    alert("오류가 발생하였습니다.");
+                    return;
+                  } else {
+                    onloadPooTable();
+                  }
+                }
+              );
+            }
+          };
+
           document.getElementById(`delete_${index}`).onclick = (e) => {
-            if (window.confirm("정말 삭제하시겠습니까?")) {
+            if (window.confirm("삭제하시겠습니까?")) {
               api(
                 "delete",
-                `users/${e.target.getAttribute("data-val")}`,
+                `poo/${e.target.getAttribute("data-val")}`,
                 {},
                 (res) => {
                   if (res.msg && res.msg == "ERROR") {
                     alert("오류가 발생하였습니다.");
                     return;
                   } else {
-                    onloadUserTable();
+                    onloadPooTable();
                   }
                 }
               );
@@ -175,7 +177,7 @@ function onloadUserTable() {
           lastPageNum > 0 ? pageCount : 0
         }/${lastPageNum}`;
       } else {
-        console.log("[API] => 닷지 게임 전체 목록을 불러올 수 없습니다.");
+        console.log("[API] => 똥피하기 게임 전체 목록을 불러올 수 없습니다.");
       }
     }
   });
