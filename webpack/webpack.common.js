@@ -18,7 +18,10 @@ module.exports = {
     main: Path.resolve(__dirname, "../src/scripts/index.js"),
     admin: Path.resolve(__dirname, "../src/scripts/admin.js"),
     "admin-poo": Path.resolve(__dirname, "../src/scripts/admin-poo.js"),
-    "admin-poo-setting": Path.resolve(__dirname, "../src/scripts/admin-poo-setting.js"),
+    "admin-poo-setting": Path.resolve(
+      __dirname,
+      "../src/scripts/admin-poo-setting.js"
+    ),
   },
   output: {
     path: Path.join(__dirname, "../build"),

@@ -13,10 +13,10 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <title>관리자 페이지 | 게임옵션</title>
+    <title>관리자 페이지 | 똥 피하기 게임 옵션</title>
   </head>
 
-  <body>
+  <body style="display: none">
     <div id="wrap">
       <header>
         <div class="header-top">
@@ -42,45 +42,69 @@
       </header>
       <div class="container">
         <div class="contents">
-          <div class="contents-top">
+          <!-- <div class="contents-top">
             <h2>똥 피하기 게임 옵션</h2>
-          </div>
+          </div> -->
 
           <div class="contents-area">
             <div class="setting">
               <div class="setting__img">
                 <div class="imgItem">
-                  <div class="setting__tit">Background</div>
-                  <div class="imgItem__thumb"></div>
+                  <div class="setting__tit">배경</div>
+                  <div id="bgSize" class="setting__tit"></div>
+                  <div id="bgThumb" class="imgItem__thumb"></div>
                   <label class="fileBtn">
-                    <input type="file" class="imgUploader" />
+                    <input
+                      name="bg"
+                      type="file"
+                      accept="image/png"
+                      class="imgUploader"
+                    />
                     <span class="fileBtn__text">Upload</span>
                   </label>
                 </div>
 
                 <div class="imgItem">
-                  <div class="setting__tit">Player</div>
-                  <div class="imgItem__thumb"></div>
+                  <div class="setting__tit">캐릭터</div>
+                  <div id="playerSize" class="setting__tit"></div>
+                  <div id="playerThumb" class="imgItem__thumb"></div>
                   <label class="fileBtn">
-                    <input type="file" class="imgUploader" />
+                    <input
+                      name="player"
+                      type="file"
+                      accept="image/png"
+                      class="imgUploader"
+                    />
                     <span class="fileBtn__text">Upload</span>
                   </label>
                 </div>
 
                 <div class="imgItem">
-                  <div class="setting__tit">Bomb</div>
-                  <div class="imgItem__thumb"></div>
+                  <div class="setting__tit">폭탄</div>
+                  <div id="bombSize" class="setting__tit"></div>
+                  <div id="bombThumb" class="imgItem__thumb"></div>
                   <label class="fileBtn">
-                    <input type="file" class="imgUploader" />
+                    <input
+                      name="bomb"
+                      type="file"
+                      accept="image/png"
+                      class="imgUploader"
+                    />
                     <span class="fileBtn__text">Upload</span>
                   </label>
                 </div>
 
                 <div class="imgItem">
-                  <div class="setting__tit">BombEffect</div>
-                  <div class="imgItem__thumb"></div>
+                  <div class="setting__tit">폭탄 효과</div>
+                  <div id="bombEffectSize" class="setting__tit"></div>
+                  <div id="bombEffectThumb" class="imgItem__thumb"></div>
                   <label class="fileBtn">
-                    <input type="file" class="imgUploader" />
+                    <input
+                      name="bombEffect"
+                      type="file"
+                      accept="image/png"
+                      class="imgUploader"
+                    />
                     <span class="fileBtn__text">Upload</span>
                   </label>
                 </div>
@@ -93,19 +117,32 @@
                   </colgroup>
                   <tbody>
                     <tr>
-                      <th>플레이어 속도 값</th>
+                      <th>캐릭터 속도 값</th>
                       <td>
                         <div class="formControl" style="width: 30rem">
-                          <input type="number" class="form-input" />
+                          <input
+                            id="playerSpeedTxt"
+                            type="number"
+                            class="form-input"
+                          />
                         </div>
-                        <div class="formDescription">* 설명</div>
+                        <div class="formDescription">
+                          * 값이 높을수록 움직이는 속도가 빠름
+                        </div>
                       </td>
                     </tr>
                     <tr>
-                      <th>폭탄 나오는 주기</th>
+                      <th>폭탄 나오는 주기(초)</th>
                       <td>
                         <div class="formControl" style="width: 30rem">
-                          <input type="number" class="form-input" />
+                          <input
+                            id="spawnTimeTxt"
+                            type="number"
+                            class="form-input"
+                          />
+                        </div>
+                        <div class="formDescription">
+                          * 값이 낮을 수록 나오는 주기가 짧음
                         </div>
                       </td>
                     </tr>
@@ -113,7 +150,14 @@
                       <th>폭탄 내려오는 속도</th>
                       <td>
                         <div class="formControl" style="width: 30rem">
-                          <input type="number" class="form-input" />
+                          <input
+                            id="gravityTxt"
+                            type="number"
+                            class="form-input"
+                          />
+                        </div>
+                        <div class="formDescription">
+                          * 값이 높을 수록 내려오는 속도가 빠름
                         </div>
                       </td>
                     </tr>
@@ -121,7 +165,14 @@
                       <th>점수 상승 값</th>
                       <td>
                         <div class="formControl" style="width: 30rem">
-                          <input type="number" class="form-input" />
+                          <input
+                            id="scoreTxt"
+                            type="number"
+                            class="form-input"
+                          />
+                        </div>
+                        <div class="formDescription">
+                          * 폭탄이 땅에 닿을 때 마다 얻는 점수 값
                         </div>
                       </td>
                     </tr>
@@ -129,7 +180,9 @@
                 </table>
               </div>
               <div class="btn-wrap rt">
-                <button type="button" class="btn btn-primary">저장</button>
+                <button id="saveBtn" type="button" class="btn btn-primary">
+                  저장
+                </button>
               </div>
             </div>
           </div>

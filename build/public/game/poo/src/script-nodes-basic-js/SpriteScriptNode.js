@@ -1,0 +1,1 @@
+class SpriteScriptNode extends ScriptNode{constructor(e){super(e)}get gameObject(){return super.gameObject}}

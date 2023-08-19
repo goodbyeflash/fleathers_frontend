@@ -33,31 +33,16 @@ window.onload = () => {
         }
       };
       document.getElementById("findBtn").onclick = () => {
-        if (!document.getElementById("findText").value) {
-          return;
-        }
-        data = {};
-        data[document.getElementById("findSelect").value] =
-          document.getElementById("findText").value;
-        pageCount = 1;
-        type = "find";
-        window.sessionStorage.setItem("poo_filter", JSON.stringify(data));
-        onloadPooTable();
+        onSerachData();
       };
-      onloadPooTable();
       document.getElementById("findClear").onclick = () => {
-        window.sessionStorage.clear("poo_filter");
-        document.getElementById("findText").value = "";
-        pageCount = 1;
-        data = {};
-        type == "all";
-        onloadPooTable();
+        onSerachClear();
       };
       document.getElementById("clearBtn").onclick = () => {
         if (!confirm("초기화 하시겠습니까?")) {
           return;
         }
-        api("delete", "poo/clear", {}, (res) => {
+        api("get", "poo/clear", {}, (res) => {
           if (res.msg && res.msg == "OK") {
             onloadPooTable();
           }
@@ -73,7 +58,14 @@ window.onload = () => {
           }
         });
       };
-      document.getElementsByTagName("body")[0].style.display = "block";
+
+      document.addEventListener("keydown", (e) => {
+        e.key == "Enter" && onSerachData();
+      });
+
+      onloadPooTable();
+      document.getElementById("findText").setAttribute("type", "text");
+      document.body.style.display = "block";
     }
   });
 };
@@ -181,6 +173,28 @@ function onloadPooTable() {
       }
     }
   });
+}
+
+function onSerachData() {
+  if (!document.getElementById("findText").value) {
+    return;
+  }
+  data = {};
+  data[document.getElementById("findSelect").value] =
+    document.getElementById("findText").value;
+  pageCount = 1;
+  type = "find";
+  window.sessionStorage.setItem("poo_filter", JSON.stringify(data));
+  onloadPooTable();
+}
+
+function onSerachClear() {
+  window.sessionStorage.clear("poo_filter");
+  document.getElementById("findText").value = "";
+  pageCount = 1;
+  data = {};
+  type == "all";
+  onloadPooTable();
 }
 
 function pad(number, length) {

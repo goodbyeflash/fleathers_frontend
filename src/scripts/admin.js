@@ -10,7 +10,8 @@ window.onload = () => {
       if (res.result.data && res.result.data.id) {
         location.href = "admin-poo.html";
       } else {
-        document.getElementsByTagName("body")[0].style.display = "block";
+        document.getElementById("userId").setAttribute("type", "text");
+        document.body.style.display = "block";
         document.getElementsByClassName("btn btn-primary")[0].onclick = () => {
           onLogin();
         };

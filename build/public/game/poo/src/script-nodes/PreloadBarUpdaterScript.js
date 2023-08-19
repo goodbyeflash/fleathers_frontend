@@ -1,0 +1,1 @@
+class PreloadBarUpdaterScript extends ScriptNode{constructor(e){super(e)}awake(){const e=this.gameObject.width;this.scene.load.on(Phaser.Loader.Events.PROGRESS,(t=>{this.gameObject.width=e*t}))}}

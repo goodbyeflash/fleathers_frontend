@@ -1,0 +1,1 @@
+class ExecActionScript extends ScriptNode{constructor(t){super(t)}targetAction;execute(...t){this.targetAction&&this.targetAction.execute(...t)}}

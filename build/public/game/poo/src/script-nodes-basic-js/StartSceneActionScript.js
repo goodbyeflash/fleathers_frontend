@@ -1,0 +1,1 @@
+class StartSceneActionScript extends ScriptNode{constructor(e){super(e)}sceneKey="";execute(...e){this.scene.scene.start(this.sceneKey,...e)}}

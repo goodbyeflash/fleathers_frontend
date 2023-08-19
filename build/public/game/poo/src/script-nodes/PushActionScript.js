@@ -1,0 +1,1 @@
+class PushActionScript extends ScriptNode{constructor(e){super(e)}execute(e){this.scene.add.tween({targets:this.gameObject,scaleX:"*=0.8",scaleY:"*=0.8",duration:80,yoyo:!0,onYoyo:()=>{this.executeChildren(e)}})}}

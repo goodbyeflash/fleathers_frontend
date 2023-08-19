@@ -472,7 +472,7 @@ header {
     margin-bottom: 2rem;
 
     .imgItem {
-      width: 13rem;
+      // width: 13rem;
     }
   }
 
@@ -490,21 +490,20 @@ header {
     }
 
     .imgItem__thumb {
+      display: flex;
+      justify-content: center;
       position: relative;
       margin-bottom: 2rem;
-      width: 10rem;
-      height: 10rem;
-      background: #f1f1f1 url("../images/image-gallery.png") no-repeat center /
+      width: 18rem;
+      height: 18rem;
+      background: #fff url("../images/image-gallery.png") no-repeat center /
         7rem 7rem;
       overflow: hidden;
 
       img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: auto;
-        height: 100%;
-        transform: translate(-50%, -50%);
+        width: 100%;
+        object-fit: contain;
+        background-color: #fff;
       }
     }
 

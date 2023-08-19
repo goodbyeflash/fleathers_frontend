@@ -1,0 +1,1 @@
+class CallbackActionScript extends ScriptNode{constructor(c){super(c)}callback;execute(...c){this.callback&&this.callback(...c)}}
