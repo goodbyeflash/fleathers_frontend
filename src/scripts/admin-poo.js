@@ -21,7 +21,7 @@ window.onload = () => {
           return;
         } else {
           pageCount--;
-          onloadPooTable();
+          onLoadTable();
         }
       };
       document.getElementById("next").onclick = () => {
@@ -29,7 +29,7 @@ window.onload = () => {
           return;
         } else {
           pageCount++;
-          onloadPooTable();
+          onLoadTable();
         }
       };
       document.getElementById("findBtn").onclick = () => {
@@ -44,7 +44,7 @@ window.onload = () => {
         }
         api("get", "poo/clear", {}, (res) => {
           if (res.msg && res.msg == "OK") {
-            onloadPooTable();
+            onLoadTable();
           }
         });
       };
@@ -63,14 +63,14 @@ window.onload = () => {
         e.key == "Enter" && onSerachData();
       });
 
-      onloadPooTable();
+      onLoadTable();
       document.getElementById("findText").setAttribute("type", "text");
       document.body.style.display = "block";
     }
   });
 };
 
-function onloadPooTable() {
+function onLoadTable() {
   const table = document
     .getElementsByClassName("table")[0]
     .getElementsByTagName("tbody")[0];
@@ -140,7 +140,7 @@ function onloadPooTable() {
                     alert("오류가 발생하였습니다.");
                     return;
                   } else {
-                    onloadPooTable();
+                    onLoadTable();
                   }
                 }
               );
@@ -158,7 +158,7 @@ function onloadPooTable() {
                     alert("오류가 발생하였습니다.");
                     return;
                   } else {
-                    onloadPooTable();
+                    onLoadTable();
                   }
                 }
               );
@@ -185,7 +185,7 @@ function onSerachData() {
   pageCount = 1;
   type = "find";
   window.sessionStorage.setItem("poo_filter", JSON.stringify(data));
-  onloadPooTable();
+  onLoadTable();
 }
 
 function onSerachClear() {
@@ -194,7 +194,7 @@ function onSerachClear() {
   pageCount = 1;
   data = {};
   type == "all";
-  onloadPooTable();
+  onLoadTable();
 }
 
 function pad(number, length) {

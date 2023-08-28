@@ -71,12 +71,27 @@ class Preload extends Phaser.Scene {
         }
       }
     }
+
+    loadFont("neodgm", "./assets/neodgm.ttf");
+
     this.load.on(Phaser.Loader.Events.COMPLETE, () =>
       this.scene.start("Level")
     );
   }
 
   /* END-USER-CODE */
+}
+
+function loadFont(name, url) {
+  var newFont = new FontFace(name, `url(${url})`);
+  newFont
+    .load()
+    .then(function (loaded) {
+      document.fonts.add(loaded);
+    })
+    .catch(function (error) {
+      return error;
+    });
 }
 
 /* END OF COMPILED CODE */

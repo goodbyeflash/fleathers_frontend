@@ -3,7 +3,13 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const htmlPageNames = ["admin", "admin-poo", "admin-poo-setting"];
+const htmlPageNames = [
+  "admin",
+  "admin-poo",
+  "admin-poo-setting",
+  "admin-puzzle",
+  "admin-puzzle-setting",
+];
 
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
@@ -21,6 +27,11 @@ module.exports = {
     "admin-poo-setting": Path.resolve(
       __dirname,
       "../src/scripts/admin-poo-setting.js"
+    ),
+    "admin-puzzle": Path.resolve(__dirname, "../src/scripts/admin-puzzle.js"),
+    "admin-puzzle-setting": Path.resolve(
+      __dirname,
+      "../src/scripts/admin-puzzle-setting.js"
     ),
   },
   output: {

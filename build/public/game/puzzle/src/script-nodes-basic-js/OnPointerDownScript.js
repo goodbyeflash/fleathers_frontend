@@ -1,0 +1,1 @@
+class OnPointerDownScript extends OnEventScript{constructor(e){super(e),this.eventName="pointerdown"}awake(){this.gameObject&&(this.gameObject.input||this.gameObject.setInteractive(),super.awake())}}

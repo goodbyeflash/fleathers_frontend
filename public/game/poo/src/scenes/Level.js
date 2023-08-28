@@ -26,19 +26,19 @@ class Level extends Phaser.Scene {
   /** @returns {void} */
   editorCreate() {
     // scoreTxt
-    const scoreTxt = this.add.text(264, 59, "", {});
+    const scoreTxt = this.add.text(550, 60, "", {});
     scoreTxt.setOrigin(0.5, 0.5);
     scoreTxt.text = "Score : 0";
-    scoreTxt.setStyle({ fontFamily: "Arial", fontSize: "30px" });
+    scoreTxt.setStyle({ fontFamily: "neodgm", fontSize: "30px" });
 
     // bg
     this.add.image(360, 640, "bg");
 
     // timeTxt
-    const timeTxt = this.add.text(496, 59, "", {});
+    const timeTxt = this.add.text(150, 60, "", {});
     timeTxt.setOrigin(0.5, 0.5);
     timeTxt.text = "Time : 00:00";
-    timeTxt.setStyle({ fontFamily: "Arial", fontSize: "30px" });
+    timeTxt.setStyle({ fontFamily: "neodgm", fontSize: "30px" });
 
     this.scoreTxt = scoreTxt;
     this.timeTxt = timeTxt;

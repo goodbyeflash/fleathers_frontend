@@ -1,0 +1,1 @@
+class RootScriptNode extends ScriptNode{constructor(t){super(t)}key="scripts";static getRoot(t,s="scripts"){return t[`RootScript__${s}`]}static getChildren(t,s="scripts"){const o=this.getRoot(t,s);return o?o.children:[]}static hasRoot(t,s="scripts"){return void 0!==this.getRoot(t,s)}awake(){this.gameObject[`RootScript__${this.key}`]=this}}
