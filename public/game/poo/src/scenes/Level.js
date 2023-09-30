@@ -189,7 +189,7 @@ class Level extends Phaser.Scene {
         console.log(res);
       },
       error: function (xhr, status, error) {
-        if (xhr.status == 302) {
+        if (xhr.status == 200) {
           console.log(`[API UPDATE] => ${xhr.responseText}`);
         } else {
           console.error(`[API ERROR] => ${xhr.responseText}`);

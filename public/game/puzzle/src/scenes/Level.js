@@ -3,11 +3,10 @@
 /* START OF COMPILED CODE */
 
 class Level extends Phaser.Scene {
+  constructor() {
+    super("Level");
 
-	constructor() {
-		super("Level");
-
-		/* START-USER-CTR-CODE */
+    /* START-USER-CTR-CODE */
     // Write your code here.
     this.gameOptions = {
       tileSize: 200,
@@ -21,35 +20,42 @@ class Level extends Phaser.Scene {
     this.gameOver = false;
     this.directions = ["left", "right", "up", "down"];
     /* END-USER-CTR-CODE */
-	}
+  }
 
-	/** @returns {void} */
-	editorCreate() {
+  /** @returns {void} */
+  editorCreate() {
+    // scoreTxt
+    const scoreTxt = this.add.text(823, 70, "", {});
+    scoreTxt.setOrigin(0.5, 0.5);
+    scoreTxt.text = "0";
+    scoreTxt.setStyle({
+      align: "center",
+      fontFamily: "neodgm",
+      fontSize: "40px",
+    });
 
-		// scoreTxt
-		const scoreTxt = this.add.text(823, 70, "", {});
-		scoreTxt.setOrigin(0.5, 0.5);
-		scoreTxt.text = "0";
-		scoreTxt.setStyle({ "align": "center", "fontFamily": "neodgm", "fontSize": "40px" });
+    // timeTxt
+    const timeTxt = this.add.text(180, 70, "", {});
+    timeTxt.setOrigin(0.5, 0.5);
+    timeTxt.text = "Time :";
+    timeTxt.setStyle({
+      align: "center",
+      fontFamily: "neodgm",
+      fontSize: "40px",
+    });
 
-		// timeTxt
-		const timeTxt = this.add.text(180, 70, "", {});
-		timeTxt.setOrigin(0.5, 0.5);
-		timeTxt.text = "Time :";
-		timeTxt.setStyle({ "align": "center", "fontFamily": "neodgm", "fontSize": "40px" });
+    this.scoreTxt = scoreTxt;
+    this.timeTxt = timeTxt;
 
-		this.scoreTxt = scoreTxt;
-		this.timeTxt = timeTxt;
+    this.events.emit("scene-awake");
+  }
 
-		this.events.emit("scene-awake");
-	}
+  /** @type {Phaser.GameObjects.Text} */
+  scoreTxt;
+  /** @type {Phaser.GameObjects.Text} */
+  timeTxt;
 
-	/** @type {Phaser.GameObjects.Text} */
-	scoreTxt;
-	/** @type {Phaser.GameObjects.Text} */
-	timeTxt;
-
-	/* START-USER-CODE */
+  /* START-USER-CODE */
 
   // Write more your code here
 
@@ -388,8 +394,6 @@ class Level extends Phaser.Scene {
       }
     }
 
-    // ok, it's definitively game over :(
-    alert("Gmae Over!");
     this.gameOver = true;
 
     $.ajax({
@@ -406,7 +410,7 @@ class Level extends Phaser.Scene {
         console.log(res);
       },
       error: function (xhr, status, error) {
-        if (xhr.status == 302) {
+        if (xhr.status == 200) {
           console.log(`[API UPDATE] => ${xhr.responseText}`);
         } else {
           console.error(`[API ERROR] => ${xhr.responseText}`);
